@@ -15,9 +15,9 @@ var app = express();
 
 var pool      =    mysql.createPool({
     connectionLimit : 100, //important
-    host     : 'mysql.pedidosdeoracao.net',
+    host     : 'mysql.SEU_DOMINIO.net',
     user     : 'pedidosdeoraca',
-    password : 'm1ck31',
+    password : 'XXXX',
     database : 'pedidosdeoraca',
     debug    :  false
 });
