@@ -1,0 +1,78 @@
+extends layout
+
+block content
+  div(class="section group")
+        div(class="col span_1_of_4 push")
+            ul(class="list-group")
+                li(class="list-group-item")
+                    span(class="badge")
+                        div(id="usuarios_orando")
+                    p Pessoas Online agora
+                li(class="list-group-item")
+                    span(class="badge")
+                        div(id="pedidos_oracao")
+                    p Oração postadas
+                li(class="list-group-item")
+                    span(class="badge")
+                        div(id="oracoes_realizadas")
+                    p Orações realizadas
+                button(class="list-group-item list-group-item-warning" id="oracoes_resp_button" onclick="oracoesRespondidas()")
+                    span(class="badge")
+                        div(id="oracoes_respondidas")
+                    p Orações respondidas
+                    p(class="list-group-item-text"  id="oracoes_resp_text") Se Deus abençoou a sua vida com esta plataforma ou respondeu seu pedido de oração, clique neste botão e some com a gente!
+
+        div(class="col span_2_of_4")
+            div(class="panel panel-info")
+              div(class="panel-heading")
+                h4(class="text-center") Qual seu motivo de oração hoje ?
+              div(class="panel-body")
+                form(class="form-form-inline" id="formOracao" name="formOracao")
+                    div(class="form-group")
+                        textarea(class="form-control" id="v_oracao" onkeyup="getCount()" for="f_oracao" rows="3" maxlength="516" placeholder="Pedido de Oração" )
+                    div(class="form-group")
+                        input(type="text" class="form-control" for="f_nome" placeholder="Nome" id="v_nome")
+                    div(class="form-group")
+                        input(type="email" class="form-control" for="f_email" name="v_email" placeholder="E-mail (Não será divulgado)" id="v_email")
+                    div(class="form-group")
+                        button(type="submit"  class="btn btn-default" onclick="return enviarOracao()") Enviar
+                        span &nbsp;&nbsp;
+                        span(id="countTextArea" class="text-info") 516
+            div
+                    input(type="text" class="form-control input-lg" onkeyup="searchHashtag()" id="v_search_hashtag" placeholder="Procure sua #")
+            div
+                div(id="alerta_new_oracoes" class="alert alert-warning" role="alert" hidden=true align="center" onclick="atualizaOracoes()") Novas orações postadas, click para atualizar!
+            br
+            div(id="show_oracoes")
+
+        div(class="col span_1_of_4")
+                    div(class="text-danger" align="center" rule="alert") ANUNCIE AQUI E AJUDE A MANTER ESTA PLATAFORMA !
+                    br
+                    div(class="thumbnail")
+                        img(src="/img/ex_logo_patrocinador.png" alt="Exemplo logo")
+                        div(class="caption")
+                            h4 Nome Conteúdo
+                            p Conteúdo identificando o conteúdo com poucos caracteres, igual este conteúdo...
+                            p
+                                a(href="../contato" class="btn btn-primary" role="button") + Informações
+                    div(class="thumbnail")
+                        img(src="/img/ex_logo_patrocinador.png" alt="Exemplo logo")
+                        div(class="caption")
+                            h4 Nome Material
+                            p Conteúdo identificando o produto com poucos caracteres, igual este conteúdo...
+                            p
+                                a(href="../contato" class="btn btn-primary" role="button") + Informações
+                    div(class="thumbnail")
+                        img(src="/img/ex_logo_patrocinador.png" alt="Exemplo logo")
+                        div(class="caption")
+                            h4 Nome Empresa
+                            p Conteúdo identificando a empresa com poucos caracteres, igual este conteúdo...
+                            p
+                                a(href="../contato" class="btn btn-primary" role="button") +Informações
+                    div(class="thumbnail")
+                        img(src="/img/ex_logo_patrocinador.png" alt="Exemplo logo")
+                        div(class="caption")
+                            h4 Nome Igreja
+                            p Conteúdo identificando sua igreja com poucos caracteres, igual este conteúdo...
+                            p
+                                a(href="../contato" class="btn btn-primary" role="button") + Informações

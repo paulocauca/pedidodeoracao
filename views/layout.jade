@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    title= title
+
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(property="og:url"           content="http://pedidosdeoracao.net")
+    meta(property="og:type"          content="website" )
+    meta(property="og:title"         content="Pedidos de Oração" )
+    meta(property="og:description"   content="Chegou o momento de orar, junte-se a nós nesta plataforma de oração!")
+    meta(property="og:image"         content="http://www.pedidosdeoracao.net/path/image.jpg")
+    meta(name="keywords" CONTENT="pedidos, de, oração, pedidosdeoracao, clamor, bíblia, Jesus, Deus, vitória, rezar, pray, bible, reunião ")
+    meta(name="URL" content="http://pedidosdeoracao.net")
+    meta(name="robots" content="INDEX, FOLLOW")
+    meta(name="reply-to" content="contato@pedidosdeoracao.net")
+    meta(name="document-rating" content="General")
+    meta(http-equiv="Content-Language" content="PT-BR")
+    meta(name="Page-Topic" content="Oração")
+    meta(name="document-state" content="Dynamic")
+
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
+    //link(rel='stylesheet', href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+    script(type='text/javascript' src="/javascripts/jquery-3.0.0.min.js")
+
+
+    link(rel='stylesheet', href='/stylesheets/grid.css')
+
+    link(href='https://fonts.googleapis.com/css?family=Fira+Sans:300,500' rel='stylesheet' type='text/css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    //link(rel='stylesheet', href='/stylesheets/queries.css')
+    //link(rel='stylesheet', href='/stylesheets/bootstrap-theme.css')
+    script(src="/socket.io/socket.io.js")
+
+    script(type='text/javascript' src="/javascripts/configuracoes.js")
+    script(type='text/javascript' src="/javascripts/contato.js")
+    script(type='text/javascript' src="/javascripts/facebook.js")
+
+    //script(type='text/javascript', src='/javascripts/bootstrap.js')
+  body
+      div(class="section" align="center")
+          nav(class="navbar-default navbar-fixed-top")
+              div(class="container-fluid")
+                      a(href="../" class="btn btn-default btn-sm" aria-label="Left Align")
+                          span(class="glyphicon glyphicon-home" aria-hidden="true")
+                          | &ensp; Orações
+                      a(href="../saibamais" class="btn btn-default btn-sm" aria-label="Left Align")
+                          span(class="glyphicon glyphicon-info-sign" aria-hidden="true")
+                          | &ensp; Saiba Mais
+                      //a(href="../doe" class="btn btn-default btn-sm" aria-label="Left Align")
+                      //    span(class="glyphicon glyphicon-heart-empty" aria-hidden="true")
+                      //    | &ensp; Doe
+                      a(href="../contato" class="btn btn-default btn-sm" aria-label="Left Align")
+                          span(class="glyphicon glyphicon-envelope" aria-hidden="true")
+                          | &ensp; Contato
+      div(class="header" align="center")
+          p Bem vindo(a) a nossa plataforma de oração on-line.Contribua, abençoe e seja abençoado porque "A oração de um justo é poderosa e eficaz" Tg 5:16 &ensp;
+
+    block content

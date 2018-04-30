@@ -1,0 +1,26 @@
+extends layout
+block content
+
+    div(class="section group")
+        div(class="col span_1_of_4 push")
+        div(class="col span_2_of_4 push")
+            div(align=center)
+            div(id="resultContato")
+            form(id="formContato" action="contato" method="POST")
+                div(class="form-group")
+                    label(class="col-sm-2 control-label") Nome
+                    input(type="text" id="c_nome" name="c_nome" class="form-control" placeholder="Nome")
+                div(class="form-group")
+                    label(class="col-sm-2 control-label") Assunto
+                    select(class="form-control" id="c_assunto" name="c_assunto")
+                        option(value="DuvidaGeral") Dúvidas Gerais
+                        option(value="Doacao") Doação
+                        option(value="Sugestao") Sugestão
+                div(class="form-group")
+                    label(class="col-sm-2 control-label") E-mail
+                    input(type="email" id="c_email" name="c_email" class="form-control" placeholder="E-mail")
+                div(class="form-group")
+                    label(class="col-sm-2 control-label") Descrição
+                    textarea(class="form-control" id="c_descricao" name="c_descricao" rows="3"  placeholder="Descrição" )
+                div(class="form-group")
+                    button(type="submit"  class="btn btn-default" onclick="return enviaContato()") Enviar

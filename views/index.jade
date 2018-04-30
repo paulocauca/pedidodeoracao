@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  div(class="section group")
+        div(class="col span_1_of_4 push")
+            ul(class="list-group")
+                li(class="list-group-item")
+                    span(class="badge")
+                        div(id="usuarios_orando")
+                    p Pessoas Online agora
+                li(class="list-group-item")
+                    span(class="badge")
+                        div(id="pedidos_oracao")
+                    p Oração postadas
+                li(class="list-group-item")
+                    span(class="badge")
+                        div(id="oracoes_realizadas")
+                    p Orações realizadas
+                button(class="list-group-item list-group-item-warning" id="oracoes_resp_button" onclick="oracoesRespondidas()")
+                    span(class="badge")
+                        div(id="oracoes_respondidas")
+                    p Orações respondidas
+                    p(class="list-group-item-text"  id="oracoes_resp_text") Se Deus abençoou a sua vida com esta plataforma ou respondeu seu pedido de oração, clique neste botão e some com a gente!
+
+        div(class="col span_2_of_4")
+            div(class="panel panel-info")
+              div(class="panel-heading")
+                h4(class="text-center") Qual seu motivo de oração hoje ?
+              div(class="panel-body")
+                form(class="form-form-inline" id="formOracao" name="formOracao")
+                    div(class="form-group")
+                        textarea(class="form-control" id="v_oracao" onkeyup="getCount()" for="f_oracao" rows="3" maxlength="516" placeholder="Pedido de Oração" )
+                    div(class="form-group")
+                        input(type="text" class="form-control" for="f_nome" placeholder="Nome" id="v_nome")
+                    div(class="form-group")
+                        input(type="email" class="form-control" for="f_email" name="v_email" placeholder="E-mail (Não será divulgado)" id="v_email")
+                    div(class="form-group")
+                        button(type="submit"  class="btn btn-default" onclick="return enviarOracao()") Enviar
+                        span &nbsp;&nbsp;
+                        span(id="countTextArea" class="text-info") 516
+            div
+                    input(type="text" class="form-control input-lg" onkeyup="searchHashtag()" id="v_search_hashtag" placeholder="Procure sua #")
+            div
+                div(id="alerta_new_oracoes" class="alert alert-warning" role="alert" hidden=true align="center" onclick="atualizaOracoes()") Novas orações postadas, click para atualizar!
+            br
+            div(id="show_oracoes")
+
+        div(class="col span_1_of_4")
+            div(class="text-danger" align="center" rule="alert") AJUDE A MANTER ESTA PLATAFORMA !
+            br
+            form(action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post")
+                input(type="hidden" name="currency" value="BRL")
+                input(type="hidden" name="receiverEmail" value="paulocauca@gmail.com")
+                input(type="hidden" name="iot" value="button")
+                input(type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/120x53-doar-azul.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!")
+            br
+            form(action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top")
+                  input(type="hidden" name="cmd" value="_s-xclick")
+                  input(type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----")
+                  input(type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fál e segura de enviar pagamentos online!")
+                 img(alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1")
+            br
+            div(id="fb-root")
+            div(class="fb-share-button" data-href="http://pedidosdeoracao.net" data-layout="box_count" data-size="large" data-mobile-iframe="true")
+                a(class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fpedidosdeoracao.net%2F&amp;src=sdkpreparse") Compartilhar
+
+
+
+script(type='text/javascript').
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.7&appId=851212354979366";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
